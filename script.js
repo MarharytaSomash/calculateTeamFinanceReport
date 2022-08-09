@@ -22,8 +22,6 @@
 // 	        return  console.log(Math.round(salaryWithTax))
 //  }
 
-  
-
 
 
 //  for (let i = 0; i < arrSpecialization.length; i++){
@@ -32,7 +30,6 @@
 // 	    getProductPrice(valuesKey)
 // 		}
 // }
-
 
 
 // function calculateTeamFinanceReport(salaries, team) {
@@ -60,35 +57,35 @@ const team1 = [
 { name: "Max", specialization: "Designer" },
 { name: "Vova", specialization: "Designer"},
 { name: "Leo", specialization: "Artist" },]
+
+
 let valuesKey;
 let keys = Object.keys(salaries1) //['Manager', 'Designer', 'Artist']
 let arrSpecialization = team1.map(el => el.specialization) //['Manager', 'Designer', 'Designer', 'Artist']
 let values = Object.values(salaries1)// [{…}, {…}, {…}]
-for (let key in values) {
-    valuesKey = values[key]
-   // console.log(valuesKey)
-}
-const getProductPrice = valuesKey => {
-   console.log(valuesKey)
-    let salaryWithTax = (valuesKey.salary / ((100 - parseInt(valuesKey.tax)) / 100))
-	        return  console.log(Math.round(salaryWithTax))
- }
 
+
+
+ function calculateTeamFinanceReport(salaries, team) {
+     for (let key in values) {
+         valuesKey = values[key]
+
+         const getSalary = function (valuesKey) {
+             let salaryWithTaxFormula= (valuesKey.salary / ((100 - parseInt(valuesKey.tax)) / 100))
+           let salaryWithTax = (Math.round(salaryWithTaxFormula))
+             return salaryWithTax
+         }
+         for (let key in arrSpecialization) {
+             let arrCurrent = arrSpecialization[key]
+             if (keys.includes(arrCurrent)) {
+                 getSalary(valuesKey)
+             }
+   return `totalBudgetTeam: , totalBudgetProgger: , totalBudgetTester:`     
   
-
-
-
- for (let i = 0; i < arrSpecialization.length; i++){
-     let arrCurrent = arrSpecialization[i]
-    if (keys === arrCurrent) {
-        getProductPrice(valuesKey)
-    console.log(valuesKey)
-		}
+         }
+     }
+     
+    
 }
-
-
-
-
-
-// const financeReport1 = calculateTeamFinanceReport(salaries1, team1)
-// console.log(JSON.stringify(financeReport1))
+const financeReport1 = calculateTeamFinanceReport(salaries1, team1)
+console.log(JSON.stringify(financeReport1))
